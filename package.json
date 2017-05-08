@@ -1,0 +1,16 @@
+{
+  "name": "my-webgl-expirement",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "go": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "me",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.2",
+    "serve-favicon": "^2.4.2"
+  }
+}
