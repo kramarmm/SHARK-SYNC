@@ -1,3 +1,13 @@
+@-webkit-keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
 @keyframes fadeOut {
     from {
         opacity: 1;
@@ -8,17 +18,37 @@
     }
 }
 
-@keyframes rotation {
+@-webkit-keyframes rotation {
     0% {
-        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
     }
 
     50% {
-        transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+                transform: rotate(180deg);
     }
 
     100% {
-        transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+    }
+}
+
+@keyframes rotation {
+    0% {
+        -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+    }
+
+    50% {
+        -webkit-transform: rotate(180deg);
+                transform: rotate(180deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
     }
 }
 
@@ -64,9 +94,11 @@ body{
     border: 6px solid #03FFC3;
     border-left-color: transparent;
     border-right-color: transparent;
-    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
     margin: inherit;
-    animation: rotation 2s infinite linear;
+    -webkit-animation: rotation 2s infinite linear;
+            animation: rotation 2s infinite linear;
 }
 
 .circle2 {
@@ -79,7 +111,8 @@ body{
     border-bottom-color: transparent;
     top: -127px;
     margin: inherit;
-    animation: rotation 2.5s infinite linear;
+    -webkit-animation: rotation 2.5s infinite linear;
+            animation: rotation 2.5s infinite linear;
 }
 
 .circle3 {
@@ -92,11 +125,13 @@ body{
     border-right-color: transparent;
     top: -284px;
     margin: inherit;
-    animation: rotation 3s infinite linear;
+    -webkit-animation: rotation 3s infinite linear;
+            animation: rotation 3s infinite linear;
 }
 
 .hide {
-    animation: fadeOut 1s;
+    -webkit-animation: fadeOut 1s;
+            animation: fadeOut 1s;
     opacity: 0;
 }
 
