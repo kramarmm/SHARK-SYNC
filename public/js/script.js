@@ -7,15 +7,24 @@ window.onload = function() {
             this.canvasElem.setAttribute("width", window.innerWidth);
             this.canvasElem.setAttribute("height", window.innerHeight);            
         }
-    }
-    // WATCH FOR CANVAS 100% SIZE
+    }    
     Canvas.setCanvasSize();
-    window.addEventListener("resize", function(){
-        Canvas.setCanvasSize.bind(Canvas);
-        renderer.setSize( window.innerWidth, window.innerHeight );
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-    });
+
+    // CHECK WEBGL CONTEXT
+    function checkContext() {
+        try {
+            if ( !window.WebGLRenderingContext || !Canvas.canvasElem.getContext( 'webgl' ) || !Canvas.canvasElem.getContext( 'experimental-webgl' ) ) {
+                throw new Error();
+            }
+        } catch( e ) { 
+            document.getElementsByClassName("disable-webGL")[0].classList.remove("hiden"); 
+            console.log(12);
+            return false;   
+        }
+    }
+
+    var checkerContext = checkContext() || true;
+    if (!checkerContext) return;
 
     //RENDERER
     var renderer = new THREE.WebGLRenderer({canvas: Canvas.canvasElem});
@@ -26,8 +35,7 @@ window.onload = function() {
     // CAMERA
     var camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 1300 );
     camera.position.set(0, 0, 110);
-    
-
+  
     // LIGHT
     var staticLightRight = new THREE.DirectionalLight(0x93EC8B, .9);
     var staticLightLeft = new THREE.DirectionalLight(0xEC4F86, 1.9);
@@ -91,7 +99,7 @@ window.onload = function() {
                 loading.classList.add("hide");
                 setTimeout( function() {
                     loading.classList.add("hiden");
-                }, 1000);
+                }, 2000);
 
             }, null, function() {console.log("err")} );
           
@@ -142,6 +150,14 @@ window.onload = function() {
     Canvas.canvasElem.addEventListener('mousedown', drag.onDocumentMouseDown.bind(drag), false);
     Canvas.canvasElem.addEventListener('mousemove', drag.onDocumentMouseMove.bind(drag), false);
     Canvas.canvasElem.addEventListener('mouseup', drag.onDocumentMouseUp.bind(drag), false);
+
+    // WATCH FOR CANVAS 100% SIZE
+    window.addEventListener("resize", function(){
+        Canvas.setCanvasSize.bind(Canvas);
+        renderer.setSize( window.innerWidth, window.innerHeight );
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+    });
 
     var t = 6.28;
     // UPDATE FRAME

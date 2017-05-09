@@ -73,6 +73,24 @@ body{
     cursor: default;
 }
 
+.disable-webGL {
+    background-color: #0D110B;
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    cursor: default;
+}
+
+img {
+    position: relative;
+    top: calc( 50vh - 131px );
+    left: calc( 50vw - 101px );
+    width: 202px;
+    height: 262px;
+}
+
 .loading {
     background-color: #0D110B;
     text-align: center;
@@ -130,8 +148,8 @@ body{
 }
 
 .hide {
-    -webkit-animation: fadeOut 1s;
-            animation: fadeOut 1s;
+    -webkit-animation: fadeOut 2s;
+            animation: fadeOut 2s;
     opacity: 0;
 }
 
