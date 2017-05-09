@@ -2,9 +2,14 @@
   "name": "my-webgl-expirement",
   "version": "1.0.0",
   "description": "",
+    "engines": {
+    "node": "7.9.0",
+    "npm": "4.2.0"
+  },
   "main": "index.js",
   "scripts": {
-    "go": "nodemon index.js"
+    "go": "nodemon index.js",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "me",
