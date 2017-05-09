@@ -34,7 +34,7 @@ window.onload = function() {
 
     // CAMERA
     var camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 1300 );
-    camera.position.set(0, 0, 110);
+    camera.position.set(0, 0, 80);
   
     // LIGHT
     var staticLightRight = new THREE.DirectionalLight(0x93EC8B, .9);
@@ -142,7 +142,7 @@ window.onload = function() {
     // CONTROLS
     var controls = new THREE.TrackballControls(camera, Canvas.canvasElem);
     controls.minDistance = 20;
-    controls.maxDistance = 180;
+    controls.maxDistance = 160;
     
     // DRUG THE ICO
     var drag = new DragObj(scene, camera, controls, line);
