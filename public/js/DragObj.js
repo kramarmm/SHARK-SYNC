@@ -21,10 +21,16 @@ function DragObj(scene, camera, controls, object) {
 }
 
     DragObj.prototype.onDocumentMouseDown = function (e) {
+        
         this.mouse = new THREE.Vector2();
         // Get mouse position
-        this.mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
-        this.mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+        if ( e.clientX) {
+            this.mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+            this.mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+        } else {
+            this.mouse.x = ( e.touches[0].clientX / window.innerWidth) * 2 - 1;
+            this.mouse.y = -( e.touches[0].clientY / window.innerHeight) * 2 + 1;
+        }
         
         // Set the raycaster position
         this.raycaster.setFromCamera( this.mouse, this.camera );
@@ -39,17 +45,22 @@ function DragObj(scene, camera, controls, object) {
         this.selection = this.intersects[0].object;
         // Calculate the offset
         this.intersects = this.raycaster.intersectObject(this.plane);
-        this.offset.copy(this.intersects[0].point).sub(this.plane.position);
+        this.offset.copy(this.intersects[0].point).sub(this.plane.position).normalize();
     }
 }
 
     DragObj.prototype.onDocumentMouseMove = function (e) {
-        event.preventDefault();
+        event.preventDefault();        
 
         this.mouse = new THREE.Vector2();
         // Get mouse position
-        this.mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
-        this.mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+        if ( e.clientX) {
+            this.mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+            this.mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+        } else {
+            this.mouse.x = ( e.touches[0].clientX / window.innerWidth) * 2 - 1;
+            this.mouse.y = -( e.touches[0].clientY / window.innerHeight) * 2 + 1;
+        }
         
         this.raycaster.setFromCamera( this.mouse, this.camera );
         
@@ -70,7 +81,7 @@ function DragObj(scene, camera, controls, object) {
     }
 
     DragObj.prototype.onDocumentMouseUp = function (e) {
-        // Enable the controls
+        // Enable the controls        
         this.controls.enabled = true;
         this.objectColorToggle.off();
         this.selection = null;

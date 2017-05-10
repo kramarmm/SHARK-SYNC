@@ -148,8 +148,13 @@ window.onload = function() {
     var drag = new DragObj(scene, camera, controls, line);
   
     Canvas.canvasElem.addEventListener('mousedown', drag.onDocumentMouseDown.bind(drag), false);
+    Canvas.canvasElem.addEventListener('touchstart', drag.onDocumentMouseDown.bind(drag), false);
+
     Canvas.canvasElem.addEventListener('mousemove', drag.onDocumentMouseMove.bind(drag), false);
+    Canvas.canvasElem.addEventListener('touchmove', drag.onDocumentMouseMove.bind(drag), false);
+
     Canvas.canvasElem.addEventListener('mouseup', drag.onDocumentMouseUp.bind(drag), false);
+    Canvas.canvasElem.addEventListener('touchend', drag.onDocumentMouseUp.bind(drag), false);
 
     // WATCH FOR CANVAS 100% SIZE
     window.addEventListener("resize", function(){
